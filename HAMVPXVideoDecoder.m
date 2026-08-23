@@ -13,21 +13,6 @@
 extern NSInteger HAMGetSampleSize(HAMInputSampleBuffer *buf, NSInteger i);
 extern CMSampleTimingInfo HAMGetSampleTiming(HAMInputSampleBuffer *buf, NSInteger i);
 
-// ---------------------------------------------------------------------------
-// HAMPlanarImage — internal struct of HAMPixelBufferPool.
-//
-// Layout confirmed from decompilation of both YouTube 20.18.4 and 21.17.3
-// binaries for -[HAMPixelBufferPool pixelBufferWithPlanarImage:...]:
-//   offset  0: const uint8_t *planeY   (8 bytes)
-//   offset  8: const uint8_t *planeCb  (8 bytes)
-//   offset 16: const uint8_t *planeCr  (8 bytes)
-//   offset 24: uint64_t       strideY  (8 bytes)
-//   offset 32: uint64_t       strideCb (8 bytes)
-//   offset 40: uint64_t       strideCr (8 bytes)
-//   offset 48: uint64_t       width    (8 bytes)
-//   offset 56: uint64_t       height   (8 bytes)
-//   offset 64: int32_t        bitDepth (4 bytes + 4 pad)
-// ---------------------------------------------------------------------------
 typedef struct {
     const uint8_t *planeY;
     const uint8_t *planeCb;
