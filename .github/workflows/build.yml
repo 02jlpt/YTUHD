@@ -14,14 +14,14 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Setup Theos & SDK
+      - name: Setup Theos
         run: |
           git clone --recursive https://github.com/theos/theos.git ~/theos
           echo "THEOS=~/theos" >> $GITHUB_ENV
-          curl -LO https://github.com/theos/sdks/releases/download/v14.5/iPhoneOS14.5.sdk.tar.xz
-          mkdir -p ~/theos/sdks
-          tar -xf iPhoneOS14.5.sdk.tar.xz -C ~/theos/sdks
-          rm iPhoneOS14.5.sdk.tar.xz
+
+      - name: Download SDK
+        run: |
+          git clone --depth=1 https://github.com/theos/sdks.git ~/theos/sdks
 
       - name: Build Tweak
         run: |
