@@ -15,10 +15,11 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Theos
-        uses: theos/setup-theos@v1
-        with:
-          theos-src: theos/theos
-          theos-ref: master
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/theos/theos/master/bin/install-theos)"
+          echo "THEOS=~/theos" >> $GITHUB_ENV
 
       - name: Build Tweak
         run: |
